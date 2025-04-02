@@ -23,14 +23,35 @@ function UserTable() {
   const handleCloseLogoutModal = () => setShowLogoutModal(false);
 
   const handleConfirmLogout = () => {
-    console.log('Sesión cerrada');
-    setShowLogoutModal(false);
-    navigate('/login');
+    // Simulate a logout API call (if applicable)
+    axios
+      .post('https://plantify.jamadev.com/backend/Logout.php') // Replace with your actual logout endpoint
+      .then((response) => {
+        if (response.data.status === 'success') {
+          // Clear any client-side session data (e.g., localStorage, tokens)
+          localStorage.clear(); // Adjust based on how you store session data
+          sessionStorage.clear();
+
+          // Close the modal
+          setShowLogoutModal(false);
+
+          // Redirect to login and replace history to prevent back navigation
+          navigate('/login', { replace: true });
+
+          // Optional: Force a full page reload to ensure no state persists
+          window.location.reload();
+        } else {
+          alert('Error al cerrar sesión: ' + response.data.message);
+        }
+      })
+      .catch((error) => {
+        alert('Error en la API: ' + error.message);
+      });
   };
 
   const handleOpenAddModal = () => setShowAddModal(true);
   const handleCloseAddModal = () => setShowAddModal(false);
-  
+
   const handleAddUser = (newUser) => {
     axios
       .post('https://plantify.jamadev.com/backend/AgregarUsuario.php', newUser)
@@ -85,6 +106,12 @@ function UserTable() {
   };
 
   useEffect(() => {
+    const authToken = localStorage.getItem('authToken');
+    if (!authToken) {
+      navigate('/login', { replace: true });
+      return;
+    }
+  
     axios
       .get('https://plantify.jamadev.com/backend/MostrarUsuario.php')
       .then((response) => {
@@ -108,7 +135,7 @@ function UserTable() {
         setError('Error en la API: ' + error.message);
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [navigate]);
 
   if (loading) {
     return <div>Cargando usuarios...</div>;
