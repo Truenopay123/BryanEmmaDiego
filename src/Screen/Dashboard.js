@@ -28,7 +28,7 @@ function Dashboard() {
   useEffect(() => {
     // Llamada a la API para obtener la información del administrador
     axios
-      .get('http://localhost:8080/estadia/estadia/backend/ObtenerAdminInfo.php') // Cambia esta URL según tu configuración
+      .get('https://plantify.jamadev.com/backend/ObtenerAdminInfo.php') // Cambia esta URL según tu configuración
       .then((response) => {
         if (response.data.status === 'success') {
           setAdminInfo(response.data.data); // Guardar la información del administrador en el estado
