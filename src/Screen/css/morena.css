@@ -1,0 +1,25 @@
+/* Fondo y color de texto personalizados para el partido de Morena */
+.bg-morena {
+    background-color: #C20E1A;
+  }
+  
+  .text-morena {
+    color: #C20E1A;
+  }
+  
+  /* Colores para la barra lateral */
+  .sidebar .nav-link.active {
+    background-color: #C20E1A;
+    font-weight: bold;
+  }
+  
+  .sidebar .nav-link:hover {
+    background-color: #C20E1A;
+    color: #ffffff;
+  }
+  
+  /* Sombra para las tarjetas */
+  .card.shadow-lg {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  

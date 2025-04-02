@@ -1,0 +1,81 @@
+
+.login-container {
+    height: 100vh;
+    background: 
+    url('./assets/LOGOINICIO.png') left, /* Imagen a la izquierda */
+      linear-gradient(to right, #2D3E56, #2D3E56, #2D3E56); /* Gradiente de rojo a la derecha */
+    background-size: 50% 100%, 50% 100%; /* La imagen y el gradiente ocupan cada uno el 50% */
+    background-position: left, right; /* La imagen está a la izquierda y el gradiente a la derecha */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center; /* Alinea el contenedor del formulario en el centro horizontal */
+    align-items: center;
+  }
+  
+  /* Estilos para el contenedor del formulario de inicio de sesión */
+  .login-box {
+    background-color: rgba(244, 244, 244, 0.9); /* Fondo blanco semi-transparente */
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    margin-left: 850px; /* Ajusta la distancia a la derecha (cambia el valor según sea necesario) */
+  }
+  
+  /* Efecto de hover para el contenedor del formulario */
+  .login-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Estilos para el botón de login */
+  .login-box button {
+    background-color: #2D3E56; /* Color rojo tipo Morena */
+    color: white; /* Texto blanco */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Efecto de hover para el botón de login */
+  .login-box button:hover {
+    background-color: #2D3E56; /* Un rojo más oscuro al pasar el mouse (hover) */
+  }
+  
+  /* Estilos para los botones sociales */
+  .btn-social {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem; /* Ajusta el tamaño del texto si es necesario */
+    padding: 10px 20px; /* Añade un poco de relleno a los botones */
+    border: none;
+    border-radius: 5px; /* Bordes redondeados */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Estilos específicos para el botón de Google */
+  .btn-google {
+    color: white; /* Texto blanco */
+  }
+  
+  /* Estilos para los íconos dentro de los botones sociales */
+  .btn-social i {
+    font-size: 1.25rem; /* Ajusta el tamaño de los íconos si es necesario */
+    margin-right: 8px; /* Espacio a la derecha del ícono */
+  }
+  
+  /* Estilos para el texto pequeño dentro del contenedor del formulario */
+  .text-center .small {
+    font-size: 0.875rem; /* Tamaño de fuente pequeño */
+    color: #000000; /* Color del texto */
+  }
+  
