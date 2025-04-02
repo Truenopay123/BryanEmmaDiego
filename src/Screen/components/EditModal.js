@@ -56,7 +56,7 @@ function EditModal({ show, user, onClose, onSave }) {
   const handleSubmit = () => {
     if (!validate()) return;
     axios
-      .post('http://localhost:8080/estadia/estadia/backend/EditarUsuario.php', formData)
+      .post('https://plantify.jamadev.com/backend/EditarUsuario.php', formData)
       .then((response) => {
         if (response.data.status === 'success') {
           onSave(formData); // Actualiza el usuario en la lista

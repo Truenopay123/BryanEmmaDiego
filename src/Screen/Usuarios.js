@@ -33,7 +33,7 @@ function UserTable() {
   
   const handleAddUser = (newUser) => {
     axios
-      .post('http://localhost:8080/estadia/estadia/backend/AgregarUsuario.php', newUser)
+      .post('https://plantify.jamadev.com/backend/AgregarUsuario.php', newUser)
       .then((response) => {
         if (response.data.status === 'success') {
           setUsers([...users, { ...newUser, id: response.data.id }]);
@@ -68,7 +68,7 @@ function UserTable() {
 
   const handleConfirmDelete = () => {
     axios
-      .post('http://localhost:8080/estadia/estadia/backend/EliminarUsuario.php', {
+      .post('https://plantify.jamadev.com/backend/EliminarUsuario.php', {
         id: currentUser.id,
       })
       .then((response) => {
@@ -86,7 +86,7 @@ function UserTable() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8080/estadia/estadia/backend/MostrarUsuarios.php')
+      .get('https://plantify.jamadev.com/backend/MostrarUsuario.php')
       .then((response) => {
         if (response.data.status === 'success') {
           const transformedUsers = response.data.data.map((usuario) => ({
