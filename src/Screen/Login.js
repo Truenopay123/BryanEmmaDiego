@@ -16,7 +16,7 @@ function Login() {
 
     try {
       const response = await fetch('https://plantify.jamadev.com/backend/login.php', {
-        method: 'POST',
+        method: 'POST', // Post
         headers: {
           'Content-Type': 'application/json',
         },
