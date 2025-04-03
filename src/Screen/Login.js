@@ -13,27 +13,28 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setErrorMessage('');
-
+  
     try {
       const response = await fetch('https://plantify.jamadev.com/backend/login.php', {
-        method: 'POST', // Post
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include', // Esto asegura que se envíen las cookies de sesión
         body: JSON.stringify({
           correo: email,
           contraseña: password,
         }),
       });
-
+  
       const data = await response.json();
-
+  
       if (data.status === 'success') {
-        // Guardar datos del usuario en localStorage para persistencia
-        localStorage.setItem('authToken', 'loggedIn'); // Indicador simple de autenticación
+        // Guardar datos del usuario en localStorage (opcional, pero no es necesario para sesiones)
+        localStorage.setItem('authToken', 'loggedIn');
         localStorage.setItem('user', JSON.stringify(data.user));
         setErrorMessage('');
-        navigate('/inicio', { replace: true }); // Redirigir y reemplazar historial
+        navigate('/inicio', { replace: true });
       } else {
         setErrorMessage(data.message);
       }
