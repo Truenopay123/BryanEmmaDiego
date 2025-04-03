@@ -8,9 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import UTEQLogo from './css/assets/UTEQ.png';
 import axios from 'axios';
 
-axios.defaults.withCredentials = true;
-
-
 function UserTable() {
   const [users, setUsers] = useState([]);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -26,20 +23,22 @@ function UserTable() {
   const handleCloseLogoutModal = () => setShowLogoutModal(false);
 
   const handleConfirmLogout = () => {
+    // Simulate a logout API call (if applicable)
     axios
-      .post('https://plantify.jamadev.com/backend/Logout.php')
+      .post('https://plantify.jamadev.com/backend/Logout.php') // Replace with your actual logout endpoint
       .then((response) => {
         if (response.data.status === 'success') {
-          // Limpiar datos del cliente
-          localStorage.removeItem('authToken');
-          localStorage.removeItem('user');
+          // Clear any client-side session data (e.g., localStorage, tokens)
+          localStorage.clear(); // Adjust based on how you store session data
           sessionStorage.clear();
 
-          // Cerrar modal y redirigir
+          // Close the modal
           setShowLogoutModal(false);
+
+          // Redirect to login and replace history to prevent back navigation
           navigate('/login', { replace: true });
 
-          // Forzar recarga (opcional)
+          // Optional: Force a full page reload to ensure no state persists
           window.location.reload();
         } else {
           alert('Error al cerrar sesión: ' + response.data.message);
@@ -47,10 +46,8 @@ function UserTable() {
       })
       .catch((error) => {
         alert('Error en la API: ' + error.message);
-        console.error('Error detallado:', error);
       });
   };
-
 
   const handleOpenAddModal = () => setShowAddModal(true);
   const handleCloseAddModal = () => setShowAddModal(false);
