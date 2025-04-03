@@ -27,7 +27,7 @@ function EducacionView() {
   useEffect(() => {
     // Llamada a la API para obtener las opiniones del sector "Educación"
     axios
-      .get('http://localhost:8080/estadia/estadia/backend/ObtenerComentariosEducacion.php')
+      .get('https://plantify.jamadev.com/backend/ObtenerComentariosEducacion.php')
       .then((response) => {
         if (response.data.status === 'success') {
           // Asignar directamente los datos recibidos

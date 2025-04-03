@@ -27,7 +27,7 @@ function SeguridadView() {
   useEffect(() => {
     // Llamada a la API para obtener las opiniones del sector "Seguridad"
     axios
-      .get('http://localhost:8080/estadia/estadia/backend/ObtenerComentariosSeguridad.php') // Cambia la URL según la ubicación real de tu backend
+      .get('https://plantify.jamadev.com/backend/ObtenerComentariosSeguridad.php') // Cambia la URL según la ubicación real de tu backend
       .then((response) => {
         if (response.data.status === 'success') {
           // Asignar directamente los datos recibidos

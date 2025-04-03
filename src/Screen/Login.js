@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Importar axios
 import './css/styles.css';
 
 function Login() {
@@ -10,37 +11,32 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     setErrorMessage('');
 
-    try {
-      const response = await fetch('https://plantify.jamadev.com/backend/login.php', {
-        method: 'POST', // Post
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          correo: email,
-          contraseña: password,
-        }),
+    axios
+      .post('https://plantify.jamadev.com/backend/login.php', {
+        correo: email,
+        contrasena: password,
+      })
+      .then((response) => {
+        if (response.data.status === 'success') {
+          // Guardar datos del usuario en localStorage para persistencia
+          localStorage.setItem('authToken', 'loggedIn'); // Indicador simple de autenticación
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+
+          // Limpiar mensaje de error y redirigir
+          setErrorMessage('');
+          navigate('/inicio', { replace: true }); // Redirigir y reemplazar historial
+        } else {
+          setErrorMessage(response.data.message); // Mostrar mensaje de error del backend
+        }
+      })
+      .catch((error) => {
+        console.error('Error en la solicitud:', error);
+        setErrorMessage('Error en la conexión con el servidor: ' + error.message);
       });
-
-      const data = await response.json();
-
-      if (data.status === 'success') {
-        // Guardar datos del usuario en localStorage para persistencia
-        localStorage.setItem('authToken', 'loggedIn'); // Indicador simple de autenticación
-        localStorage.setItem('user', JSON.stringify(data.user));
-        setErrorMessage('');
-        navigate('/inicio', { replace: true }); // Redirigir y reemplazar historial
-      } else {
-        setErrorMessage(data.message);
-      }
-    } catch (error) {
-      console.error('Error en la solicitud:', error);
-      setErrorMessage('Error en la conexión con el servidor.');
-    }
   };
 
   return (

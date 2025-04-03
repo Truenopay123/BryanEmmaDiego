@@ -27,7 +27,7 @@ function MovilidadView() {
   useEffect(() => {
     // Llamada a la API para obtener las opiniones del sector "Movilidad"
     axios
-      .get('http://localhost:8080/estadia/estadia/backend/ObtenerComentariosMovilidad.php') // Cambiar URL según ubicación real
+      .get('https://plantify.jamadev.com/backend/ObtenerComentariosMovilidad.php') // Cambiar URL según ubicación real
       .then((response) => {
         if (response.data.status === 'success') {
           // Asignar directamente los datos recibidos

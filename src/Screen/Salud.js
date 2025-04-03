@@ -27,7 +27,7 @@ function SaludView() {
   useEffect(() => {
     // Llamada a la API para obtener las opiniones del sector "Salud"
     axios
-      .get('http://localhost:8080/estadia/estadia/backend/ObtenerComentariosSalud.php') // Cambia la URL según tu backend
+      .get('https://plantify.jamadev.com/backend/ObtenerComentariosSalud.php') // Cambia la URL según tu backend
       .then((response) => {
         if (response.data.status === 'success') {
           // Asignar directamente los datos recibidos

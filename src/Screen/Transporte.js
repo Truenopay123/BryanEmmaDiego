@@ -27,7 +27,7 @@ function TransporteView() {
   useEffect(() => {
     // Llamada a la API para obtener las opiniones del sector "Transporte"
     axios
-      .get('http://localhost:8080/estadia/estadia/backend/ObtenerComentariosTransporte.php') // Cambia la URL según la ubicación real de tu backend
+      .get('https://plantify.jamadev.com/backend/ObtenerComentariosTransporte.php') // Cambia la URL según la ubicación real de tu backend
       .then((response) => {
         if (response.data.status === 'success') {
           setOpiniones(response.data.data); // Datos asignados al estado

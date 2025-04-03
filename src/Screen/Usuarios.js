@@ -113,7 +113,7 @@ function UserTable() {
     }
   
     axios
-      .get('https://plantify.jamadev.com/backend/MostrarUsuario.php')
+      .get('https://plantify.jamadev.com/backend/MostrarUsuarios.php')
       .then((response) => {
         if (response.data.status === 'success') {
           const transformedUsers = response.data.data.map((usuario) => ({
