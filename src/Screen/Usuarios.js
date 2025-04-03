@@ -106,11 +106,7 @@ function UserTable() {
   };
 
   useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
-    if (!authToken) {
-      navigate('/login', { replace: true });
-      return;
-    }
+    
   
     axios
       .get('https://plantify.jamadev.com/backend/MostrarUsuario.php')
