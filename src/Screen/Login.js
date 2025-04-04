@@ -40,7 +40,7 @@ function Login() {
       })
       .catch((error) => {
         console.error('Error en la solicitud');
-        setErrorMessage('Error en la contraseña');
+        setErrorMessage('Error en correo o contraseña');
       });
   };
 
