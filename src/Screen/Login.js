@@ -39,8 +39,8 @@ function Login() {
         }
       })
       .catch((error) => {
-        console.error('Error en la solicitud:', error);
-        setErrorMessage('Error en la conexión con el servidor: ' + error.message);
+        console.error('Error en la solicitud');
+        setErrorMessage('Error en la contraseña');
       });
   };
 
