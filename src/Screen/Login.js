@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Importar axios
+import axios from 'axios';
 import './css/styles.css';
 
 function Login() {
@@ -23,14 +23,19 @@ function Login() {
       .then((response) => {
         if (response.data.status === 'success') {
           // Guardar datos del usuario en localStorage para persistencia
-          localStorage.setItem('authToken', 'loggedIn'); // Indicador simple de autenticación
+          localStorage.setItem('authToken', 'loggedIn');
           localStorage.setItem('user', JSON.stringify(response.data.user));
 
           // Limpiar mensaje de error y redirigir
           setErrorMessage('');
-          navigate('/inicio', { replace: true }); // Redirigir y reemplazar historial
+          navigate('/inicio', { replace: true });
         } else {
-          setErrorMessage(response.data.message); // Mostrar mensaje de error del backend
+          // Validar específicamente si el error es por contraseña incorrecta
+          if (response.data.message === 'Contraseña incorrecta') {
+            setErrorMessage('La contraseña ingresada es incorrecta. Por favor, intenta de nuevo.');
+          } else {
+            setErrorMessage(response.data.message); // Otro mensaje de error del backend
+          }
         }
       })
       .catch((error) => {
